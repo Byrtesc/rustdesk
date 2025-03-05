@@ -86,6 +86,11 @@ jobs:
         with:
           submodules: recursive
 
+      - name: 修改 config.rs 文件
+        run: |
+          sed -i 's/rs-ny.rustdesk.com/${{ secrets.RENDEZVOUS_SERVER }}/' ./libs/hbb_common/src/config.rs
+          sed -i 's/OeVuKk5nlHiXp+APNn0Y3pC1Iwpwn44JGqrQCsWqmBw=/${{ secrets.RS_PUB_KEY }}/' ./libs/hbb_common/src/config.rs
+
       - name: Restore bridge files
         uses: actions/download-artifact@master
         with:
